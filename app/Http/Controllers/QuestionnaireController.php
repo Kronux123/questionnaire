@@ -35,11 +35,10 @@ class QuestionnaireController extends Controller
             
            ]);
            $correct_ans = $question['choices'][$question['correctChoice']];
-           foreach($question['choices'] as $choice) {
+           foreach($question['choices'] as $index => $choice) {
             $item->choices()->create([
                 'answer' => $choice,
-                'is_correct' => $choice === $correct_ans
-                // 'is_correct' => $choice === $question['correctChoice']
+                'is_correct' => $index === $question['correctChoice']
             ]);
            }
        }
