@@ -24,11 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/questionnaires/view/{id}', [QuestionnaireController::class, 'view'])->name('questionnaires.view');
 
     Route::get('/dashboard', function () {
-        
-           $questionnaires = Questionare::with('questions.choices')
-                ->where('user_id', Auth::user()->id)
-                ->get();
-           
+        $questionnaires = Questionare::with('questions.choices')
+            ->where('user_id', Auth::user()->id)
+            ->latest()
+            ->get();
         return Inertia::render('Dashboard', [
             'questionnaires' => $questionnaires
         ]);

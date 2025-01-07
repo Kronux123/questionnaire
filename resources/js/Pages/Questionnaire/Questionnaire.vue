@@ -12,9 +12,9 @@
                     <div class="flex gap-4 mb-2">
                         <label :for="'question' + index" class="w-1/3">Question {{ index + 1 }}: </label>
                         <input type="text" :id="'question' + index" v-model="question.question" class="flex-1 p-2 border border-gray-300 rounded">
-                        <span class="text-red-500">{{ form.errors.questions?.[index]?.question }}</span>                    </div>
+                        <span class="text-red-500">{{ form.errors.questions?.[index]?.question }}</span>                    
+                    </div>
 
-               
 
                     <div class="flex gap-4 mb-2">
                         <label class="w-1/3">Correct: </label>
@@ -61,7 +61,7 @@ const form = useForm({
     ]
 })
 
-const save = async () => {
+const save = () => {
     form.post(route('questionnaires.save'), {
         onSuccess: () => form.reset()
     });
